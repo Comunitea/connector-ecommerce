@@ -19,6 +19,8 @@ class OnChangeManager(Component):
                 if model:
                     column = self.env[model]._fields[fieldname]
                     if column.type == 'many2one':
+                        if not value:
+                            continue
                         value = value[0]  # many2one are tuple (id, name)
                 new_values[fieldname] = value
         return new_values
